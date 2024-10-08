@@ -107,7 +107,7 @@ WHERE CloseDate IS NULL*/
 
 /*SELECT ProductKey, AvailableForSaleDate, ProductName, BrandName
 FROM DimProduct
-WHERE ProductName LIKE '%Home_Theater%' AND BrandName LIKE 'Litware' AND AvailableForSaleDate LIKE '%2009%' AND AvailableForSaleDate LIKE '%2009%'*/
+WHERE ProductName LIKE '%Home_Theater%' AND BrandName LIKE 'Litware' AND AvailableForSaleDate LIKE '15/03/2009'*/
 
 -- Exercício 6
 
@@ -147,3 +147,86 @@ WHERE ColorName IN ('Green', 'Orange' , 'Black', 'Silver', 'Pink') AND BrandName
 FROM DimProduct
 WHERE BrandName LIKE 'Contoso' AND ColorName LIKE 'Silver' AND UnitPrice BETWEEN 10 AND 30
 ORDER BY UnitPrice DESC*/
+
+/*SELECT
+COUNT(CustomerKey) AS 'Qtd. Clientes'
+FROM DimCustomer*/
+
+-- WHERE Gender = 'F'
+
+/*SELECT
+COUNT(DISTINCT DepartmentName) AS 'Qtd. áreas'
+FROM DimEmployee*/
+
+/*SELECT
+SUM(SalesQuantity) AS 'Total Vendido'
+FROM FactSales*/
+
+/*SELECT
+AVG(SalesQuantity) AS 'Média'
+FROM FactSales*/
+
+-- Exercício 1
+
+/*SELECT
+COUNT(SalesAmount) AS 'Valor Vendido',
+COUNT(ReturnAmount) AS 'Valor Devolvido'
+FROM FactSales*/
+
+-- Exercício 2
+
+/*SELECT
+-- dividi por 13 para descobrir o salário de cada mês (incluindo décimo terceiro)
+AVG (YearlyIncome/13) AS 'Média de salário'
+FROM DimCustomer
+WHERE Occupation LIKE '%Professional%'*/
+
+-- Exercício 3
+
+/*SELECT
+MAX(EmployeeCount) AS 'Maior n° de Funcionários'
+FROM DimStore
+
+SELECT
+MIN(EmployeeCount) AS 'Maior n° de Funcionários'
+FROM DimStore
+
+SELECT StoreName
+FROM DimStore
+WHERE EmployeeCount = 325 OR EmployeeCount = 7*/
+
+-- Exercíco 4
+
+/*SELECT
+COUNT(FirstName)
+FROM DimEmployee
+WHERE Gender = 'F'
+
+SELECT
+COUNT(FirstName)
+FROM DimEmployee
+WHERE Gender = 'M'
+
+SELECT TOP(1) FirstName, EmailAddress, HireDate
+FROM DimEmployee
+WHERE Gender = 'F'
+ORDER BY HireDate
+
+SELECT TOP(1) FirstName, EmailAddress, HireDate
+FROM DimEmployee
+WHERE Gender = 'M'
+ORDER BY HireDate*/
+
+-- Exercício 5
+
+/*SELECT
+COUNT(DISTINCT ColorName) AS 'Cores'
+FROM DimProduct
+
+SELECT
+COUNT(DISTINCT BrandName) AS 'Marcas'
+FROM DimProduct
+
+SELECT
+COUNT(DISTINCT ClassName) AS 'Classes de produtos'
+FROM DimProduct*/
