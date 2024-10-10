@@ -169,9 +169,11 @@ FROM FactSales*/
 -- Exercício 1
 
 /*SELECT
-COUNT(SalesAmount) AS 'Valor Vendido',
-COUNT(ReturnAmount) AS 'Valor Devolvido'
-FROM FactSales*/
+SUM (SalesAmount) AS 'Valor Vendido',
+SUM (ReturnAmount) AS 'Valor Devolvido'
+FROM FactSales
+WHERE channelKey*/
+
 
 -- Exercício 2
 
@@ -230,3 +232,163 @@ FROM DimProduct
 SELECT
 COUNT(DISTINCT ClassName) AS 'Classes de produtos'
 FROM DimProduct*/
+
+/*SELECT
+DepartmentName,
+COUNT(DepartmentName) AS 'Qtd. Funcionários'
+FROM DimEmployee
+GROUP BY DepartmentName*/
+
+-- Agrupamentos
+
+-- Exercício 1
+
+-- A
+/*SELECT
+channelKey,
+SUM(SalesQuantity) AS 'Qtd Vendida'
+FROM FactSales
+GROUP BY channelKey*/
+
+-- B
+/*SELECT
+StoreKey,
+SUM(SalesQuantity) AS 'Qtd Vendida',
+SUM(ReturnQuantity) AS 'Qtd. Devolvida'
+FROM FactSales
+GROUP BY StoreKey
+ORDER BY StoreKey*/
+
+-- C
+/*SELECT
+channelKey,
+SUM(SalesAmount) AS 'Total Vendido 2007'
+FROM FactSales
+WHERE DateKey LIKE '%2007%'
+GROUP BY channelKey*/
+
+-- Exercício 2
+
+-- A
+/*SELECT
+ProductKey,
+SUM(SalesQuantity) AS 'Qtd. Vendida',
+SUM(SalesAmount) AS 'Total Vendido'
+FROM FactSales
+GROUP BY ProductKey
+HAVING SUM(SalesAmount) > 5000000
+ORDER BY [Qtd. Vendida]DESC
+
+-- B
+
+SELECT TOP(10)
+ProductKey,
+SUM(SalesQuantity) AS 'Qtd. Vendida',
+SUM(SalesAmount) AS 'Total Vendido'
+FROM FactSales
+GROUP BY ProductKey
+ORDER BY [Qtd. Vendida]DESC*/
+
+-- Exercício 3
+
+-- A
+/*SELECT
+CustomerKey,
+SUM(SalesQuantity) AS 'Qtd. Compras'
+FROM FactOnlineSales
+GROUP BY CustomerKey
+ORDER BY SUM(SalesQuantity) DESC
+
+-- B
+SELECT TOP(3)
+COUNT(SalesQuantity) AS 'ID Produto',
+ProductKey
+FROM FactOnlineSales
+WHERE CustomerKey = 19037
+GROUP BY ProductKey
+ORDER BY COUNT(SalesQuantity) DESC*/
+
+-- Exercício 4
+
+-- A
+/*SELECT
+BrandName,
+COUNT(ProductName) AS 'Marca'
+FROM DimProduct
+GROUP BY BrandName*/
+
+-- B
+/*SELECT
+ClassName,
+AVG(UnitPrice)
+FROM DimProduct
+GROUP BY ClassName*/
+
+-- C
+/*SELECT
+SUM(Weight) AS 'Peso',
+ColorName AS 'Cor'
+FROM DimProduct
+GROUP BY ColorName*/
+
+-- Exercício 5
+
+/*SELECT
+StockTypeName,
+SUM(Weight) AS 'Peso'
+FROM DimProduct
+WHERE BrandName LIKE '%Contoso%'
+GROUP BY StockTypeName
+ORDER BY SUM(Weight) DESC*/
+
+-- Exercício 6
+
+/*SELECT
+BrandName,
+COUNT(DISTINCT ColorName) AS 'Qtd. de Cores'
+FROM DimProduct
+GROUP BY BrandName*/
+
+-- Exercício 7
+
+/*SELECT
+Gender,
+COUNT(CustomerKey) AS 'Qtd. Pessoas',
+-- Incluindo 13° salário
+AVG(YearlyIncome/13) AS 'Média de salário'
+FROM DimCustomer
+GROUP BY Gender
+HAVING Gender LIKE 'F' OR Gender LIKE 'M'*/
+
+-- Exercício 8
+
+/*SELECT
+Education,
+COUNT(CustomerKey) AS 'Qtd. Pessoas',
+-- Incluindo 13° Salário
+AVG(YearlyIncome/13) AS 'Média de Salário'
+FROM DimCustomer
+GROUP BY Education
+HAVING Education IS NOT NULL*/
+
+-- Exercício 9
+
+/*SELECT
+DepartmentName,
+COUNT(EmployeeKey) AS 'N° de Funcionários'
+FROM DimEmployee
+WHERE Status LIKE '%Current%'
+GROUP BY DepartmentName*/
+
+-- Exercício 10
+
+/*SELECT
+Title,
+SUM(VacationHours) AS 'Horas de Férias'
+FROM DimEmployee
+WHERE DepartmentName IN ('Production', 'Marketing', 'Finance', 'Engineering') AND Gender LIKE '%F%' AND HireDate LIKE '%1999%' OR HireDate LIKE '%2000%'
+GROUP BY Title*/
+
+
+
+
