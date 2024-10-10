@@ -1,8 +1,9 @@
 -- Join Cross
 
-/*SELECT
+SELECT
 DimGeography.CityName,
 DimStore.StoreName
 FROM DimGeography
 CROSS JOIN DimStore
-WHERE DimStore.GeographyKey = DimGeography.GeographyKey*/
+WHERE DimGeography.CityName IS NOT NULL 
+
